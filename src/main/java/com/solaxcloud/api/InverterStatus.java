@@ -10,20 +10,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  */
 public enum InverterStatus {
 
-	WaitMode("100"), //
-	CheckMode("101"), //
-	NormalMode("102"), //
-	FaultMode("103"), //
-	PermanentFaultMode("104"), //
-	UpdateMode("105"), //
-	EPSCheckMode("106"), //
-	EPSMode("107"), //
-	SelfTestMode("108"), //
-	IdleMode("109"), //
-	StandByMode("110"), //
-	PvWakeUpBatMode("111"), //
-	GenCheckMode("112"), //
-	GenRunMode("113");
+	WAIT_MODE("100"), //
+	CHECK_MODE("101"), //
+	NORMAL_MODE("102"), //
+	FAULT_MODE("103"), //
+	PERMANENT_FAULT_MODE("104"), //
+	UPDATE_MODE("105"), //
+	EPS_CHECK_MODE("106"), //
+	EPS_MODE("107"), //
+	SELF_TEST_MODE("108"), //
+	IDLE_MODE("109"), //
+	STAND_BY_MODE("110"), //
+	PV_WAKE_UP_BAT_MODE("111"), //
+	GEN_CHECK_MODE("112"), //
+	GEN_RUN_MODE("113");
 
 	/**
 	 * Provided by Solax_API.pdf Appendix Table 5

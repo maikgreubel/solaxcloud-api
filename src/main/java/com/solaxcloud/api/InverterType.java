@@ -10,19 +10,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  */
 public enum InverterType {
 
-	X1LX("1"), //
-	XHybrid("2"), //
-	X1HybridFit("3"), //
-	X1BoostAirMini("4"), //
-	X3HybridFit("5"), //
-	X320K30K("6"), //
-	X3MicPro("7"), //
-	X1Smart("8"), //
-	X1AC("9"), //
-	A1Hybrid("10"), //
-	A1Fit("11"), //
-	A1Grid("12"), //
-	J1ESS("13");
+	X1_LX("1"), //
+	X_HYBRID("2"), //
+	X1_HYBRID_FIT("3"), //
+	X1_BOOST_AIR_MINI("4"), //
+	X3_HYBRID_FIT("5"), //
+	X3_20K_30K("6"), //
+	X3_MIC_PRO("7"), //
+	X1_SMART("8"), //
+	X1_AC("9"), //
+	A1_HYBRID("10"), //
+	A1_FIT("11"), //
+	A1_GRID("12"), //
+	J1_ESS("13");
 
 	/**
 	 * Provided by Solax_API.pdf Appendix Table 4

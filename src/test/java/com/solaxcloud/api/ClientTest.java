@@ -139,6 +139,14 @@ public class ClientTest {
 		// When
 		RealTimeStatus status = client.getRealTimeStatus();
 		// Then
+		checkResultedStatus(status);
+
+		// Just for fun, we try it a second time
+		RealTimeStatus status2 = client.getRealTimeStatus();
+		checkResultedStatus(status2);
+	}
+
+	private void checkResultedStatus(RealTimeStatus status) {
 		assertThat(status).isNotNull();
 		assertThat(status.getAcpower()).isEqualTo(0.0);
 		assertThat(status.getBatPower()).isEqualTo(0.0);
@@ -148,8 +156,8 @@ public class ClientTest {
 		assertThat(status.getFeedinpowerM2()).isEqualTo(0.0);
 		assertThat(status.getId()).isNull();
 		assertThat(status.getInverterSN()).isEqualTo("ABCDEFGHIJKL123");
-		assertThat(status.getInverterStatus()).isEqualByComparingTo(InverterStatus.IdleMode);
-		assertThat(status.getInverterType()).isEqualByComparingTo(InverterType.X1HybridFit);
+		assertThat(status.getInverterStatus()).isEqualByComparingTo(InverterStatus.IDLE_MODE);
+		assertThat(status.getInverterType()).isEqualByComparingTo(InverterType.X1_HYBRID_FIT);
 		assertThat(status.getPeps1()).isEqualTo(0.0);
 		assertThat(status.getPeps2()).isEqualTo(0.0);
 		assertThat(status.getPeps3()).isEqualTo(0.0);
@@ -163,31 +171,6 @@ public class ClientTest {
 				LocalDateTime.parse("2022-01-26 20:19:46", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 		assertThat(status.getYieldtoday()).isEqualTo(0.8);
 		assertThat(status.getYieldtotal()).isEqualTo(1601.5);
-
-		// Just for fun, we try it a second time
-		RealTimeStatus status2 = client.getRealTimeStatus();
-		assertThat(status2).isNotNull();
-		assertThat(status2.getAcpower()).isEqualTo(0.0);
-		assertThat(status2.getBatPower()).isEqualTo(0.0);
-		assertThat(status2.getConsumeenergy()).isEqualTo(2076.99);
-		assertThat(status2.getFeedinenergy()).isEqualTo(1391.04);
-		assertThat(status2.getFeedinpower()).isEqualTo(-307.0);
-		assertThat(status2.getFeedinpowerM2()).isEqualTo(0.0);
-		assertThat(status2.getId()).isNull();
-		assertThat(status2.getInverterSN()).isEqualTo("ABCDEFGHIJKL123");
-		assertThat(status2.getInverterStatus()).isEqualByComparingTo(InverterStatus.IdleMode);
-		assertThat(status2.getInverterType()).isEqualByComparingTo(InverterType.X1HybridFit);
-		assertThat(status2.getPeps1()).isEqualTo(0.0);
-		assertThat(status2.getPeps2()).isEqualTo(0.0);
-		assertThat(status2.getPeps3()).isEqualTo(0.0);
-		assertThat(status2.getPowerdc1()).isEqualTo(0.0);
-		assertThat(status2.getPowerdc2()).isEqualTo(0.0);
-		assertThat(status2.getPowerdc3()).isNull();
-		assertThat(status2.getPowerdc4()).isNull();
-		assertThat(status2.getSn()).isEqualTo("ZXYWVUTSRQPO");
-		assertThat(status2.getSoc()).isEqualTo(10.0);
-		assertThat(status2.getYieldtoday()).isEqualTo(0.8);
-		assertThat(status2.getYieldtotal()).isEqualTo(1601.5);
 	}
 
 	@Test
@@ -217,8 +200,8 @@ public class ClientTest {
 		assertThat(status.getFeedinpowerM2()).isEqualTo(0.0);
 		assertThat(status.getId()).isNull();
 		assertThat(status.getInverterSN()).isEqualTo("ABCDEFGHIJKL123");
-		assertThat(status.getInverterStatus()).isEqualByComparingTo(InverterStatus.IdleMode);
-		assertThat(status.getInverterType()).isEqualByComparingTo(InverterType.X1HybridFit);
+		assertThat(status.getInverterStatus()).isEqualByComparingTo(InverterStatus.IDLE_MODE);
+		assertThat(status.getInverterType()).isEqualByComparingTo(InverterType.X1_HYBRID_FIT);
 		assertThat(status.getPeps1()).isEqualTo(0.0);
 		assertThat(status.getPeps2()).isEqualTo(0.0);
 		assertThat(status.getPeps3()).isEqualTo(0.0);

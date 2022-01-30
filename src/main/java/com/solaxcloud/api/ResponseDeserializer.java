@@ -7,7 +7,6 @@ import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -50,7 +49,7 @@ public class ResponseDeserializer extends StdDeserializer<Response> {
 	 *         the failure cause.
 	 */
 	@Override
-	public Response deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+	public Response deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 		Response response = new Response();
 
 		JsonNode node = p.getCodec().readTree(p);
@@ -82,10 +81,10 @@ public class ResponseDeserializer extends StdDeserializer<Response> {
 			status.setPeps3(result.get("peps3").doubleValue());
 			status.setPowerdc1(result.get("powerdc1").doubleValue());
 			status.setPowerdc2(result.get("powerdc2").doubleValue());
-			if (result.get("powerdc3") != null && !result.get("powerdc3").isNull()) {
+			if (notNull(result.get("powerdc3"))) {
 				status.setPowerdc3(result.get("powerdc3").asDouble());
 			}
-			if (result.get("powerdc4") != null && !result.get("powerdc4").isNull()) {
+			if (notNull(result.get("powerdc4"))) {
 				status.setPowerdc4(result.get("powerdc4").asDouble());
 			}
 			status.setSn(result.get("sn").textValue());
@@ -104,4 +103,13 @@ public class ResponseDeserializer extends StdDeserializer<Response> {
 		return response;
 	}
 
+	/**
+	 * Small helper to check whether a nullable node is not null
+	 * 
+	 * @param node the node to check
+	 * @return true in case of node is not null, false otherwise
+	 */
+	private boolean notNull(final JsonNode node) {
+		return node != null && !node.isNull();
+	}
 }

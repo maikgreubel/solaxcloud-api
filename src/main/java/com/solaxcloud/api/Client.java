@@ -25,9 +25,9 @@ import jakarta.ws.rs.core.UriBuilder;
 public class Client {
 
 	/**
-	 * Save client instance object in order to cleanly close the connection
+	 * Save resteasy client instance object in order to cleanly close the connection
 	 */
-	private ResteasyClient client;
+	private ResteasyClient restEasyClient;
 
 	/**
 	 * This callback makes it possible to inject authentication information into
@@ -78,7 +78,7 @@ public class Client {
 		} catch (ProcessingException pex) {
 			throw new SolaxCloudException(pex);
 		} finally {
-			client.close();
+			restEasyClient.close();
 		}
 	}
 
@@ -88,8 +88,8 @@ public class Client {
 	 * @return a proxy instance type of {@link Service}
 	 */
 	private Service createServiceProxy() {
-		client = new ResteasyClientBuilderImpl().register(createDeserializationProvider()).build();
-		ResteasyWebTarget target = client.target(UriBuilder.fromPath(ENDPOINT_ADDRESS));
+		restEasyClient = new ResteasyClientBuilderImpl().register(createDeserializationProvider()).build();
+		ResteasyWebTarget target = restEasyClient.target(UriBuilder.fromPath(ENDPOINT_ADDRESS));
 		return target.proxy(Service.class);
 	}
 
