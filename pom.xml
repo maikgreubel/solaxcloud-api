@@ -6,13 +6,13 @@
 	<artifactId>api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<description>SolaX Cloud User Monitoring API V4.0</description>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-		
+        	<maven.compiler.source>1.8</maven.compiler.source>
+
 		<version.gson>2.8.9</version.gson>
 		<version.persistence.api>2.2</version.persistence.api>
 		<version.validation.api>2.0.1.Final</version.validation.api>
@@ -22,21 +22,24 @@
 		<version.assertj>3.22.0</version.assertj>
 		<version.mockito>4.3.1</version.mockito>
 		<version.maven.compiler>3.9.0</version.maven.compiler>
+
+		<sonar.organization>maikgreubel</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${version.gson}</version>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
 		    <version>${version.jaxb.api}</version>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>javax.persistence</groupId>
 		    <artifactId>javax.persistence-api</artifactId>
@@ -50,7 +53,7 @@
 		    <version>${version.validation.api}</version>
 		    <scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
