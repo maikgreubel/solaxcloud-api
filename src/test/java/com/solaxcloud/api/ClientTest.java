@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.client.ResponseProcessingException;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -17,20 +21,12 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
-import org.jboss.resteasy.client.jaxrs.internal.LocalResteasyProviderFactory;
-import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl;
-import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import jakarta.ws.rs.ProcessingException;
-import jakarta.ws.rs.client.ResponseProcessingException;
-import jakarta.ws.rs.core.MediaType;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ClientTest {
@@ -52,6 +48,8 @@ public class ClientTest {
 	@Mock
 	HttpEntity entity;
 
+	private ApacheHttpClient43Engine engine;
+
 	@Before
 	public void setUp() {
 		// Prepare mocks
@@ -62,12 +60,7 @@ public class ClientTest {
 		when(contentTypeHeader.getValue()).thenReturn(MediaType.APPLICATION_JSON);
 		// Inject mocked response into mocked http client
 		httpClient.setResponse(response);
-		// Prepare the resteasy stack to use existing providers and configuration from
-		// class path
-		ResteasyProviderFactory providerFactory = new LocalResteasyProviderFactory(RegisterBuiltin
-				.getClientInitializedResteasyProviderFactory(Thread.currentThread().getContextClassLoader()));
-		providerFactory.register(new ApacheHttpClient43Engine(httpClient));
-		ResteasyClientBuilderImpl.setProviderFactory(providerFactory);
+		engine = new ApacheHttpClient43Engine(httpClient);
 	}
 
 	@Test
@@ -252,6 +245,6 @@ public class ClientTest {
 				return "ZXYWVUTSRQPO";
 			}
 		});
-		return client;
+		return client.httpEngine(engine);
 	}
 }

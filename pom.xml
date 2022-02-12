@@ -4,24 +4,27 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.solaxcloud</groupId>
 	<artifactId>api</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>SolaX Cloud User Monitoring API V4.0</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<maven.compiler.target>1.8</maven.compiler.target>
-        	<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.source>1.8</maven.compiler.source>
 
 		<version.gson>2.8.9</version.gson>
 		<version.persistence.api>2.2</version.persistence.api>
 		<version.validation.api>2.0.1.Final</version.validation.api>
 		<version.jaxb.api>2.4.0-b180830.0359</version.jaxb.api>
-		<version.resteasy>6.0.0.Final</version.resteasy>
+		<version.resteasy>3.6.2.Final</version.resteasy>
+		<version.jboss.jaxrs.api>1.0.1.Final</version.jboss.jaxrs.api>
 		<version.junit>4.13.2</version.junit>
 		<version.assertj>3.22.0</version.assertj>
 		<version.mockito>4.3.1</version.mockito>
 		<version.maven.compiler>3.9.0</version.maven.compiler>
+		<version.maven.jacoco>0.8.7</version.maven.jacoco>
+		<version.maven.source>3.2.0</version.maven.source>
 
 		<sonar.organization>maikgreubel</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -35,44 +38,49 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.xml.bind</groupId>
-		    <artifactId>jaxb-api</artifactId>
-		    <version>${version.jaxb.api}</version>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${version.jaxb.api}</version>
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.persistence</groupId>
-		    <artifactId>javax.persistence-api</artifactId>
-		    <version>${version.persistence.api}</version>
-		    <scope>provided</scope>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>${version.persistence.api}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.validation</groupId>
-		    <artifactId>validation-api</artifactId>
-		    <version>${version.validation.api}</version>
-		    <scope>provided</scope>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${version.validation.api}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
 			<version>${version.resteasy}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson2-provider</artifactId>
+			<version>${version.resteasy}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+			<version>${version.jboss.jaxrs.api}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>org.jboss.resteasy</groupId>
-		    <artifactId>resteasy-jackson2-provider</artifactId>
-		    <version>${version.resteasy}</version>
-		    <scope>provided</scope>
-		</dependency>
-
-		<dependency>
-		    <groupId>org.mockito</groupId>
-		    <artifactId>mockito-core</artifactId>
-		    <version>${version.mockito}</version>
-		    <scope>test</scope>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${version.mockito}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -83,33 +91,39 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>org.assertj</groupId>
-		    <artifactId>assertj-core</artifactId>
-		    <version>${version.assertj}</version>
-		    <scope>test</scope>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${version.assertj}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
-			    <groupId>org.jacoco</groupId>
-			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>0.8.7</version>
-			    <executions>
-			        <execution>
-			        	<id>prepare-agent</id>
-			        	<goals>
-			        		<goal>prepare-agent</goal>
-			        	</goals>
-			        </execution>
-			        <execution>
-			        	<id>report</id>
-			        	<goals>
-			        		<goal>report</goal>
-			        	</goals>
-			        </execution>
-			    </executions>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${version.maven.jacoco}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version.maven.source}</version>
 			</plugin>
 		</plugins>
 	</build>
